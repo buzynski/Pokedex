@@ -7,4 +7,7 @@ class PokedexDataSource: BaseDataSource() {
     suspend fun getPokemonList() =
         getResult { ApiClient.pokedexService.getPokemonList() }
 
+    suspend fun getPokemonCharacteristic(id: Int) =
+        getResult { ApiClient.pokedexService.getPokemonCharacteristic(id) }
+
 }

@@ -4,34 +4,33 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.viewModelScope
 import com.buzynski.pokedex.api.Resource
-import com.buzynski.pokedex.api.model.PokemonList
+import com.buzynski.pokedex.api.model.Characteristic
 import com.buzynski.pokedex.api.repository.PokedexRepository
 import com.buzynski.pokedex.base.BaseViewModel
 import com.buzynski.pokedex.helpers.Event
-import com.buzynski.pokedex.navigation.MainViewDirections
 import kotlinx.coroutines.launch
 
-class MainViewViewModel(private val pokedexRepository: PokedexRepository): BaseViewModel() {
+class PokemonPreviewViewModel(private val pokedexRepository: PokedexRepository): BaseViewModel() {
 
-    private val _pokemonList = MediatorLiveData<Event<PokemonList>>()
-    val pokemonList: LiveData<Event<PokemonList>> get() = _pokemonList
+    private val _pokemonCharacteristic = MediatorLiveData<Event<Characteristic>>()
+    val pokemonCharacteristic: LiveData<Event<Characteristic>> get() = _pokemonCharacteristic
 
     // ---
 
-    fun fetchData() {
-        fetchPokemonList()
+    fun fetchData(pokemonId: Int) {
+        fetchPokemonCharacteristic(pokemonId)
     }
 
     // ---
 
-    private fun fetchPokemonList() = viewModelScope.launch {
+    private fun fetchPokemonCharacteristic(pokemonId: Int) = viewModelScope.launch {
         setLoadingState(true)
 
-        val response = pokedexRepository.getPokemonList()
+        val response = pokedexRepository.getPokemonCharacteristic(pokemonId)
         when (response.status) {
             Resource.Status.SUCCESS -> {
                 response.data?.let {
-                    _pokemonList.value = Event(it)
+                    _pokemonCharacteristic.value = Event(it)
                     setLoadingState(false)
                 }
             }
@@ -40,13 +39,5 @@ class MainViewViewModel(private val pokedexRepository: PokedexRepository): BaseV
                 setLoadingState(false)
             }
         }
-    }
-
-    // --- NAVIGATION
-
-    fun userPokemonClicked(pokemonName: String, id: Int) {
-        navigateTo(
-            MainViewDirections.actionMainViewFragmentToPreviewFragment(pokemonName, id)
-        )
     }
 }

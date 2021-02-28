@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.buzynski.pokedex.base.BaseFragment
 import com.buzynski.pokedex.base.BaseViewModel
-import com.buzynski.pokedex.databinding.ViewMainBinding
+import com.buzynski.pokedex.databinding.FragmentMainViewBinding
 import com.buzynski.pokedex.rv.adapter.MainViewAdapter
 import com.buzynski.pokedex.viewmodel.MainViewViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainFragment: BaseFragment() {
 
-    private lateinit var binding: ViewMainBinding
+    private lateinit var binding: FragmentMainViewBinding
     private val viewModel: MainViewViewModel by viewModel()
 
     override fun onCreateView(
@@ -22,7 +22,7 @@ class MainFragment: BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = ViewMainBinding.inflate(inflater, container, false)
+        binding = FragmentMainViewBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = getViewModel() as MainViewViewModel
 
@@ -43,7 +43,7 @@ class MainFragment: BaseFragment() {
     // --- RECYCLERVIEW
 
     private fun configureRecyclerView() {
-        val adapter = MainViewAdapter()
+        val adapter = MainViewAdapter(viewModel)
         adapter.stateRestorationPolicy =
             RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
 

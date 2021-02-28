@@ -4,9 +4,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryDark">@color/white</item>
-        <item name="colorAccent">@color/white</item>
+        <item name="colorPrimary">#FF9800</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">#FF5722</item>
     </style>
 
     <!-- Style is for the splash screen -->

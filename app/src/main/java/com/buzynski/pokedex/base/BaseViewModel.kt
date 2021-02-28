@@ -5,7 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavDirections
 import com.buzynski.pokedex.helpers.Event
+import com.buzynski.pokedex.navigation.NavigationCommand
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -19,6 +21,9 @@ abstract class BaseViewModel : ViewModel() {
 
     private val _loadingState = MutableLiveData<Event<Boolean>>()
     val loadingState: LiveData<Event<Boolean>> get() = _loadingState
+
+    private val _navigation = MutableLiveData<Event<NavigationCommand>>()
+    val navigation: LiveData<Event<NavigationCommand>> = _navigation
 
     // ---
 
@@ -34,5 +39,19 @@ abstract class BaseViewModel : ViewModel() {
                 Log.i("Error occurred:", errorMessage)
             }
         }
+    }
+
+    // --- NAVIGATION
+
+    fun navigateTo(directions: NavDirections) {
+        _navigation.value = Event(NavigationCommand.To(directions))
+    }
+
+    fun <T> navigateBackWithObservableData(key: String, data: T) {
+        _navigation.value = Event(NavigationCommand.BackWithArgs(key, data))
+    }
+
+    fun navigateBack() {
+        _navigation.value = Event(NavigationCommand.Back)
     }
 }
