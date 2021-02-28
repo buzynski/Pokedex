@@ -35,7 +35,7 @@ abstract class BaseFragment: Fragment() {
     // --- NAVIGATION
 
     private fun observeNavigation(viewModel: BaseViewModel) {
-        viewModel.navigation.observe(viewLifecycleOwner, Observer {
+        viewModel.navigation.observe(viewLifecycleOwner, {
             it?.getContentIfNotHandled()?.let { command ->
                 when (command) {
                     is NavigationCommand.To -> findNavController().navigate(

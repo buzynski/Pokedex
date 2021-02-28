@@ -11,7 +11,7 @@ object GsonUtil {
 fun <T> Bundle.getJsonExtra(name: String, `class`: Class<T>): T? {
     val stringExtra = getString(name)
     if (stringExtra != null) {
-        return GsonUtil.gson.fromJson<T>(stringExtra, `class`)
+        return GsonUtil.gson.fromJson(stringExtra, `class`)
     }
 
     return null

@@ -23,7 +23,7 @@ fun Fragment.setupSnackBar(
     snackBarEvent: LiveData<Event<String>>,
     timeLength: Int
 ) {
-    snackBarEvent.observe(lifecycleOwner, Observer { event ->
+    snackBarEvent.observe(lifecycleOwner, { event ->
         event.getContentIfNotHandled()?.let { res ->
             context?.let { showSnackBar(res, timeLength) }
         }
@@ -42,7 +42,7 @@ fun Fragment.setupProgressDialog(
     lifecycleOwner: LifecycleOwner,
     progressEvent: LiveData<Event<Boolean>>
 ) {
-    progressEvent.observe(lifecycleOwner, Observer { event ->
+    progressEvent.observe(lifecycleOwner, { event ->
         event.getContentIfNotHandled().let { isLoading ->
             if (isLoading != null) {
                 isLoading.let {

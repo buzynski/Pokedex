@@ -46,12 +46,4 @@ abstract class BaseViewModel : ViewModel() {
     fun navigateTo(directions: NavDirections) {
         _navigation.value = Event(NavigationCommand.To(directions))
     }
-
-    fun <T> navigateBackWithObservableData(key: String, data: T) {
-        _navigation.value = Event(NavigationCommand.BackWithArgs(key, data))
-    }
-
-    fun navigateBack() {
-        _navigation.value = Event(NavigationCommand.Back)
-    }
 }
