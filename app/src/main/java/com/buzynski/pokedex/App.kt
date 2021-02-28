@@ -3,6 +3,7 @@ package com.buzynski.pokedex
 import android.app.Application
 import android.content.Context
 import com.buzynski.pokedex.di.singleModule
+import com.buzynski.pokedex.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
@@ -18,7 +19,8 @@ class App: Application() {
 
             modules(
                 listOf(
-                    singleModule
+                    singleModule,
+                    viewModelModule
                 )
             )
         }
