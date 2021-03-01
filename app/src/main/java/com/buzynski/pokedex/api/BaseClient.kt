@@ -1,6 +1,8 @@
 package com.buzynski.pokedex.api
 
+import com.buzynski.pokedex.App
 import com.buzynski.pokedex.BuildConfig
+import com.buzynski.pokedex.api.interceptor.NetworkConnectionInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -23,6 +25,7 @@ open class BaseClient<T> constructor(private val apiService: Class<T>) {
             .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
             .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
+            .addInterceptor(NetworkConnectionInterceptor(App.appContext))
             .addInterceptor(httpLoggingInterceptor)
 
         val retrofitBuilder = Retrofit.Builder().apply {
