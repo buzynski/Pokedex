@@ -16,7 +16,7 @@ import com.google.android.material.snackbar.Snackbar
 
 abstract class BaseFragment: Fragment() {
 
-    protected lateinit var navController: NavController
+    private lateinit var navController: NavController
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -28,7 +28,6 @@ abstract class BaseFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         navController = Navigation.findNavController(requireView())
     }
 

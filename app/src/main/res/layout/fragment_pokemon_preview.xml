@@ -81,7 +81,7 @@
                     android:gravity="center"
                     android:textColor="#000000"
                     android:textSize="24sp"
-                    app:descriptions="@{viewModel.pokemonCharacteristic.contentIfNotHandled.descriptions}"
+                    app:characteristic="@{viewModel.pokemonCharacteristic.contentIfNotHandled.descriptions}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

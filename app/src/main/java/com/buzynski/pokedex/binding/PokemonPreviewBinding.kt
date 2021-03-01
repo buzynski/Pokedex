@@ -7,14 +7,14 @@ import com.buzynski.pokedex.api.model.Characteristic
 object PokemonPreviewBinding {
 
     @BindingAdapter(
-        "descriptions"
+        "characteristic"
     )
     @JvmStatic
-    fun TextView.setPokemonName(
+    fun TextView.setPokemonCharacteristic(
         descriptions: List<Characteristic.Description>?
     ) {
         descriptions?.let { it ->
-            this.text = it.firstOrNull { description -> description.language.name == "en" }?.description ?: "No description."
+            this.text = it.firstOrNull { description -> description.language.name == "en" }?.description ?: "No characteristics."
         }
     }
 }

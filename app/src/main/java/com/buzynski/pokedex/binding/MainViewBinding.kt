@@ -11,7 +11,7 @@ object MainViewBinding {
         "data"
     )
     @JvmStatic
-    fun RecyclerView.setRatingsRecovery(
+    fun RecyclerView.setData(
         data: List<PokemonList.Result>?
     ) {
         if (this.adapter is MainViewAdapter) {
