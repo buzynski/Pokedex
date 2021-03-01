@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Pokedex</string>
     <string name="splash_screen_logo">splash_screen_logo</string>
     <string name="loading">Loading ...</string>
     <string name="characteristic">Characteristic</string>

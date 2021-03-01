@@ -8,7 +8,7 @@ import com.buzynski.pokedex.rv.adapter.MainViewAdapter
 object MainViewBinding {
 
     @BindingAdapter(
-        "app:data"
+        "data"
     )
     @JvmStatic
     fun RecyclerView.setRatingsRecovery(

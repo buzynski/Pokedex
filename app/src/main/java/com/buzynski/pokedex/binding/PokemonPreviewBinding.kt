@@ -7,7 +7,7 @@ import com.buzynski.pokedex.api.model.Characteristic
 object PokemonPreviewBinding {
 
     @BindingAdapter(
-        "app:descriptions"
+        "descriptions"
     )
     @JvmStatic
     fun TextView.setPokemonName(

@@ -3,7 +3,7 @@ package com.buzynski.pokedex.extensions
 import com.buzynski.pokedex.BuildConfig
 
 fun Int.getBackImageUrlFromId(): String {
-    return "${BuildConfig.API_BACK_IMG_URL}${this + 1}.gif"
+    return "${BuildConfig.API_BACK_IMG_URL}${this}.gif"
 }
 
 fun Int.getFrontImageUrlFromId(): String {

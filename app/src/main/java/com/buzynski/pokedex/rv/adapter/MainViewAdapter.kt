@@ -20,9 +20,11 @@ class MainViewAdapter(private val viewModel: MainViewViewModel) :
         )
 
     override fun onBindViewHolder(holder: MainViewViewHolder, position: Int) {
-        holder.bind(position.getBackImageUrlFromId(), pokemonList[position])
+        val exactPokemonId = position + 1
+
+        holder.bind(exactPokemonId.getBackImageUrlFromId(), pokemonList[position])
         holder.itemView.setOnClickListener {
-            viewModel.userPokemonClicked(pokemonList[position].name, position + 1)
+            viewModel.userPokemonClicked(pokemonList[position].name, exactPokemonId)
         }
     }
 

@@ -23,27 +23,56 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // ---
+
+    variantFilter {
+        def names = it.flavors*.name
+        ignore = buildType.name == "qa" && names.contains("apiMocked")
+    }
+
+    // ---
+
+    flavorDimensions "pokedex"
+
+    // ---
+
+    productFlavors {
+        apiProduction {
+            dimension "pokedex"
+            applicationIdSuffix ".a"
+
+            resValue "string", "app_name", "Pokedex A"
+
+            buildConfigField('String', 'API_URL', '"https://pokeapi.co/api/v2/"')
+            buildConfigField('String', 'API_FRONT_IMG_URL', '"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/"')
+            buildConfigField('String', 'API_BACK_IMG_URL', '"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/"')
+        }
+
+        apiMocked {
+            dimension "pokedex"
+            applicationIdSuffix ".b"
+
+            resValue "string", "app_name", "Pokedex B"
+
+            buildConfigField('String', 'API_URL', '"https://pokeapi.co/api/v1/"')
+            buildConfigField('String', 'API_FRONT_IMG_URL', '"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/"')
+            buildConfigField('String', 'API_BACK_IMG_URL', '"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/"')
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField('String', 'API_URL', '"https://pokeapi.co/api/v2/"')
-            buildConfigField('String', 'API_FRONT_IMG_URL', '"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/"')
-            buildConfigField('String', 'API_BACK_IMG_URL', '"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/"')
+
         }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField('String', 'API_URL', '"https://pokeapi.co/api/v2/"')
-            buildConfigField('String', 'API_FRONT_IMG_URL', '"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/"')
-            buildConfigField('String', 'API_BACK_IMG_URL', '"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/"')
         }
         qa {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField('String', 'API_URL', '"https://pokeapi.co/api/v2/"')
-            buildConfigField('String', 'API_FRONT_IMG_URL', '"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/"')
-            buildConfigField('String', 'API_BACK_IMG_URL', '"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/"')
         }
     }
     compileOptions {

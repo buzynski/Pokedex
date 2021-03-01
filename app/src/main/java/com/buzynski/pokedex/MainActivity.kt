@@ -43,6 +43,8 @@ class MainActivity : AppCompatActivity() {
         findNavController(R.id.host_fragment_container).restoreState(savedInstanceState.getBundle("nav_state"))
     }
 
+    // ---
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.host_fragment_container)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()

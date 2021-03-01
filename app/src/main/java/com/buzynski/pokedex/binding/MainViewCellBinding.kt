@@ -9,7 +9,7 @@ import java.util.*
 object MainViewCellBinding {
 
     @BindingAdapter(
-        "app:pokemonName"
+        "pokemonName"
     )
     @JvmStatic
     fun TextView.setPokemonName(
@@ -21,7 +21,7 @@ object MainViewCellBinding {
     }
 
     @BindingAdapter(
-        "app:pokemonUrlImage"
+        "pokemonUrlImage"
     )
     @JvmStatic
     fun ImageView.setPokemonUrlImage(
