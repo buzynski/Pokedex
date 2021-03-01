@@ -18,7 +18,7 @@ https://pokeapi.co
 - apiProduction
 - apiMocked
 
-#### Product flavours:
+#### Build types:
 - release
 - debug
 - qa
