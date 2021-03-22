@@ -7,9 +7,9 @@ import com.buzynski.pokedex.R
 import com.buzynski.pokedex.api.model.PokemonList
 import com.buzynski.pokedex.extensions.getBackImageUrlFromId
 import com.buzynski.pokedex.rv.viewHolder.MainViewViewHolder
-import com.buzynski.pokedex.viewmodel.MainViewViewModel
+import com.buzynski.pokedex.view.UserAction
 
-class MainViewAdapter(private val viewModel: MainViewViewModel) :
+class MainViewAdapter(private val userAction: UserAction) :
     RecyclerView.Adapter<MainViewViewHolder>() {
 
     private var pokemonList: List<PokemonList.Result> = emptyList()
@@ -24,7 +24,7 @@ class MainViewAdapter(private val viewModel: MainViewViewModel) :
 
         holder.bind(exactPokemonId.getBackImageUrlFromId(), pokemonList[position])
         holder.itemView.setOnClickListener {
-            viewModel.userPokemonClicked(pokemonList[position].name, exactPokemonId)
+            userAction.onItemCellClicked(pokemonList[position].name, exactPokemonId)
         }
     }
 

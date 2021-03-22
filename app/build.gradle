@@ -129,14 +129,17 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0"
 
     // RECYCLERVIEW
-    implementation "androidx.recyclerview:recyclerview:1.2.0-beta01"
+    implementation "androidx.recyclerview:recyclerview:1.2.0-beta02"
 
     // NAVIGATION
-    implementation "androidx.navigation:navigation-fragment-ktx:2.3.3"
-    implementation "androidx.navigation:navigation-ui-ktx:2.3.3"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.4"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.4"
 
     // GLIDE
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+
+    // LEAKCANARY
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.6'
 
     // ---
 }

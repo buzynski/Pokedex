@@ -12,7 +12,7 @@ import com.buzynski.pokedex.rv.adapter.MainViewAdapter
 import com.buzynski.pokedex.viewmodel.MainViewViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class MainFragment: BaseFragment() {
+class MainFragment: BaseFragment(), UserAction {
 
     private lateinit var binding: FragmentMainViewBinding
     private val viewModel: MainViewViewModel by viewModel()
@@ -43,10 +43,16 @@ class MainFragment: BaseFragment() {
     // --- RECYCLERVIEW
 
     private fun configureRecyclerView() {
-        val adapter = MainViewAdapter(viewModel)
+        val adapter = MainViewAdapter(this)
         adapter.stateRestorationPolicy =
             RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
 
         binding.recyclerView.adapter = adapter
+    }
+
+    // ---
+
+    override fun onItemCellClicked(pokemonName: String, pokemonId: Int) {
+        viewModel.userPokemonClicked(pokemonName, pokemonId)
     }
 }
