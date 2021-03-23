@@ -14,15 +14,19 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainFragment: BaseFragment(), UserAction {
 
-    private lateinit var binding: FragmentMainViewBinding
+    // GOT MEMORY LEAK DUE TO LATEINIT PROPERTY WHICH AFTER DESTROY DOESN'T CLEARED, REPLACED THAT
+    // https://developer.android.com/topic/libraries/view-binding#fragments
+    private var _binding: FragmentMainViewBinding? = null
     private val viewModel: MainViewViewModel by viewModel()
+
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMainViewBinding.inflate(inflater, container, false)
+        _binding = FragmentMainViewBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = getViewModel() as MainViewViewModel
 
@@ -54,5 +58,12 @@ class MainFragment: BaseFragment(), UserAction {
 
     override fun onItemCellClicked(pokemonName: String, pokemonId: Int) {
         viewModel.userPokemonClicked(pokemonName, pokemonId)
+    }
+
+    // ---
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

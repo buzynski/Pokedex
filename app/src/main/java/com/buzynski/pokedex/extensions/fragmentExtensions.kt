@@ -31,7 +31,7 @@ fun Fragment.setupSnackBar(
 }
 
 fun Fragment.showProgressDialog() {
-    activity?.let { activity -> ProgressBarDialog.startLoadingFor(activity) }
+    activity?.let { activity -> ProgressBarDialog.startLoadingFor(activity).showDialog() }
 }
 
 fun Fragment.dismissProgressDialog() {
